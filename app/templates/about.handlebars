@@ -1,1 +1,10 @@
-<h1>About</h1>
+<h1>About {{name}}</h1>
+
+<p>{{description}}</p>
+
+<p>
+  <a href="#" {{action toggleTeam}}>{{toggleTeamLabel}}</a>
+</p>
+
+{{render "team" App.Fixures.Team}}
+
