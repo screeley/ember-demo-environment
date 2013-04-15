@@ -1,13 +1,13 @@
-App.Fixures = App.Fixures || {};
+App.Fixtures = App.Fixtures || {};
 
 // our model
-App.Fixures.Org = {
+App.Fixtures.Org = {
   name: 'jubarian.org',
   description:
     'A non-profit organization of peopled dedicating to spreading joy.'
 }
 
-App.Fixures.Team = [
+App.Fixtures.Team = [
   { name: 'Bob' },
   { name: 'Andy' },
   { name: 'John' },
@@ -39,7 +39,7 @@ App.TeamView = Em.View.extend({
 
 App.AboutRoute = Em.Route.extend({
   model: function() {
-    return App.Fixures.Org;
+    return App.Fixtures.Org;
   }
 });
 

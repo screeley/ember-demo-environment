@@ -2,3 +2,10 @@ node_modules
 temp
 dist
 .sass-cache
+app/scripts/templates.js
+app/components
+.ruby-version
+.ruby-gemset
+Gemfile
+Gemfile.lock
+
