@@ -1,5 +1,6 @@
 'use strict';
 var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
@@ -53,6 +54,7 @@ module.exports = function (grunt) {
                 options: {
                     middleware: function (connect) {
                         return [
+                            proxySnippet,
                             lrSnippet,
                             mountFolder(connect, '.tmp'),
                             mountFolder(connect, 'app')
@@ -78,7 +80,16 @@ module.exports = function (grunt) {
                         ];
                     }
                 }
-            }
+            },
+            proxies: [
+                {
+                    context: '/rest',
+                    host: 'localhost',
+                    port: 3000,
+                    changeOrigin: false,
+                    https: false
+                }
+            ]
         },
         open: {
             server: {
@@ -245,12 +256,28 @@ module.exports = function (grunt) {
     // remove when mincss task is renamed
     grunt.renameTask('mincss', 'cssmin');
 
+    grunt.registerTask('rest-server', function () {
+      var spawn = require('child_process').spawn
+        , app = spawn('node', ['server/app.js']);
+
+      app.stdout.on('data', function(d) {
+        grunt.log.write('rest-server: '+d.toString());
+      });
+      app.stderr.on('data', function(d) {
+        grunt.log.write('rest-server: '+d.toString());
+      });
+
+      grunt.log.writeln("Running rest-server");
+    });
+
     grunt.registerTask('server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['open', 'connect:dist:keepalive']);
         }
 
         grunt.task.run([
+            'rest-server',
+            'configureProxies',
             'clean:server',
             'coffee:dist',
             'compass:server',

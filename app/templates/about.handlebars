@@ -4,7 +4,8 @@
 
 <p>
   <a href="#" {{action toggleTeam}}>{{toggleTeamLabel}}</a>
+  {{#linkTo members.index}}manage team{{/linkTo}}
 </p>
 
-{{render "team" App.Fixtures.Team}}
+{{render "team" controller.members}}
 

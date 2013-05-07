@@ -1,7 +1,10 @@
 {
   "name": "demo",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "express": "latest",
+    "underscore": "latest"
+  },
   "devDependencies": {
     "grunt": "0.4.0rc7",
     "grunt-contrib-copy": "0.4.0rc7",
@@ -22,7 +25,8 @@
     "grunt-mocha": "~0.2.2",
     "grunt-open": "~0.1.0",
     "matchdep": "~0.1.1",
-    "grunt-ember-templates": "~0.4.3"
+    "grunt-ember-templates": "~0.4.3",
+    "grunt-connect-proxy": "0.1.0"
   },
   "engines": {
     "node": ">=0.8.0"

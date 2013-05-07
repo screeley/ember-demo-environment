@@ -1,0 +1,9 @@
+List of Members
+<ul>
+{{#each controller}}
+  <li>
+    {{name}} <a href="#" {{action delete}}>delete</a> <a href="#" {{action edit}}>edit</a>
+  </li>
+{{/each}}
+</ul>
+{{#linkTo "members.new"}}add member{{/linkTo}}
